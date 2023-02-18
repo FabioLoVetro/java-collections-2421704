@@ -61,7 +61,5 @@ class RoomServiceTest {
 		assertTrue(guestRooms.stream()
 				.allMatch(r -> r.getType().equals("Premiere Room")));
 		assertEquals(4, this.service.getInventory().size());
-
 	}
-
 }
