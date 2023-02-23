@@ -16,11 +16,14 @@ public class BookingService {
 		 * Returns a boolean that indicates if the Guest was
 		 * successfully placed in the room.
 		 */
+		/*
 		if(!this.bookings.containsKey(room)){
 			this.bookings.put(room,guest);
 			return true;
 		}
 		return false;
+		*/
+		return this.bookings.putIfAbsent(room,guest) == null;
 	}
 
 	public double totalRevenue() {
@@ -28,11 +31,14 @@ public class BookingService {
 		 * 2. Returns a double that totals the rate of each Room booked
 		 * in the bookings Map.
 		 */
+		/*
 		double totalRate = 0;
 		for(Room room : this.bookings.keySet()){
 			totalRate += room.getRate();
 		}
 		return totalRate;
+		 */
+		return this.bookings.keySet().stream().mapToDouble(room -> room.getRate()).sum();
 	}
 	
 	public Map<Room, Guest> getBookings() {
